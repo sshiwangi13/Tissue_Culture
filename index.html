@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Banana Tissue Culture Plants | Booking</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-dark: #1b5e20;
+      --accent: #fdd835;
+      --bg: #f5f5f5;
+      --text: #333;
+      --radius: 10px;
+      --shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    body { background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    header { background: linear-gradient(135deg, #e8f5e9, #f1f8e9); border-bottom: 1px solid #dce7dd; }
+    .nav {
+      max-width: 1100px; margin: 0 auto; padding: 1rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { font-weight: 800; font-size: 1.2rem; color: var(--primary-dark); letter-spacing: 0.03em; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 1.5rem; font-size: 0.95rem; }
+    .nav-links a { font-weight: 500; opacity: 0.85; }
+    .nav-links a:hover { opacity: 1; color: var(--primary-dark); }
+    .btn-primary {
+      background: var(--primary); color: #fff; padding: 0.7rem 1.4rem;
+      border-radius: 999px; border: none; cursor: pointer; font-weight: 600;
+      box-shadow: 0 6px 18px rgba(46,125,50,0.35); transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+    }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 10px 24px rgba(46,125,50,0.4); }
+    .btn-outline {
+      background: transparent; color: var(--primary-dark); padding: 0.7rem 1.4rem;
+      border-radius: 999px; border: 1px solid var(--primary-dark); cursor: pointer; font-weight: 600;
+      transition: background 0.1s ease, color 0.1s ease;
+    }
+    .btn-outline:hover { background: var(--primary-dark); color: #fff; }
+    .hero {
+      max-width: 1100px; margin: 0 auto; padding: 2.5rem 1.5rem 3rem;
+      display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 2.5rem; align-items: center;
+    }
+    .hero-text h1 {
+      font-size: clamp(2.1rem, 3vw + 1rem, 3rem);
+      color: var(--primary-dark); margin-bottom: 1rem;
+    }
+    .hero-text h1 span { color: var(--accent); }
+    .hero-text p { font-size: 1rem; max-width: 520px; margin-bottom: 1.5rem; opacity: 0.9; }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.5rem; }
+    .badge {
+      background: #fff; border-radius: 999px; padding: 0.35rem 0.9rem;
+      font-size: 0.8rem; border: 1px solid #e0e0e0; display: inline-flex; align-items: center; gap: 0.35rem;
+    }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; }
+    .hero-note { font-size: 0.85rem; opacity: 0.8; }
+    .hero-img {
+      position: relative; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); background: #e8f5e9;
+      min-height: 260px; display: flex; align-items: stretch; justify-content: stretch;
+    }
+    .hero-img-main {
+      flex: 1; background-image: url("https://images.pexels.com/photos/212324/pexels-photo-212324.jpeg?auto=compress&cs=tinysrgb&w=800");
+      background-size: cover; background-position: center;
+    }
+    .hero-img-card {
+      position: absolute; bottom: 16px; left: 16px;
+      background: rgba(255,255,255,0.96); border-radius: 16px; padding: 0.8rem 1rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15); font-size: 0.8rem; max-width: 210px;
+    }
+    .hero-img-card strong { display: block; margin-bottom: 0.2rem; color: var(--primary-dark); }
+    .hero-img-card span { font-size: 0.75rem; opacity: 0.8; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: #e8f5e9; border-radius: 999px; padding: 0.25rem 0.7rem; font-size: 0.75rem; margin-bottom: 0.4rem;
+    }
+    .pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--primary); }
+    main { max-width: 1100px; margin: 0 auto 3rem; padding: 0 1.5rem; }
+    section { margin-top: 2.5rem; }
+    .section-header {
+      display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.2rem; gap: 1rem;
+    }
+    .section-header h2 { font-size: 1.4rem; color: var(--primary-dark); }
+    .section-header p { font-size: 0.9rem; opacity: 0.8; max-width: 480px; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.4rem; }
+    .card {
+      background: #fff; border-radius: var(--radius); padding: 1.1rem 1.1rem 1.2rem;
+      box-shadow: var(--shadow); border: 1px solid #e0e0e0;
+    }
+    .card h3 { font-size: 1rem; margin-bottom: 0.4rem; color: var(--primary-dark); }
+    .card p { font-size: 0.9rem; opacity: 0.9; }
+    .card-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.7; margin-bottom: 0.3rem; }
+    .gallery-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem;
+    }
+    .gallery-item {
+      border-radius: 14px; overflow: hidden; box-shadow: 0 8px 18px rgba(0,0,0,0.08); background: #e8f5e9;
+      min-height: 150px; position: relative;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      filter: saturate(1.1);
+    }
+    .gallery-caption {
+      position: absolute; bottom: 8px; left: 10px; right: 10px;
+      background: rgba(0,0,0,0.45); color: #fff; font-size: 0.75rem;
+      padding: 0.3rem 0.5rem; border-radius: 999px; text-align: center;
+    }
+    .price-highlight {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: #fffde7; border-radius: 999px; padding: 0.35rem 0.8rem;
+      font-size: 0.85rem; border: 1px solid #fff59d;
+    }
+    .price-highlight strong { color: var(--primary-dark); }
+    .booking-layout {
+      display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 1.5rem; align-items: flex-start;
+    }
+    form {
+      background: #fff; border-radius: var(--radius); padding: 1.3rem 1.2rem 1.4rem;
+      box-shadow: var(--shadow); border: 1px solid #e0e0e0;
+    }
+    .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.9rem; }
+    label { font-size: 0.85rem; font-weight: 600; display: block; margin-bottom: 0.25rem; }
+    input, select, textarea {
+      width: 100%; padding: 0.55rem 0.6rem; border-radius: 8px; border: 1px solid #cfd8dc;
+      font-size: 0.9rem; outline: none; transition: border 0.1s ease, box-shadow 0.1s ease;
+      background: #fafafa;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--primary); box-shadow: 0 0 0 2px rgba(46,125,50,0.15); background: #fff;
+    }
+    textarea { min-height: 70px; resize: vertical; }
+    .muted { font-size: 0.8rem; opacity: 0.75; margin-top: 0.3rem; }
+    .total-box {
+      background: #f1f8e9; border-radius: 10px; padding: 0.8rem 0.9rem; font-size: 0.9rem;
+      border: 1px solid #dce7dd; margin-top: 0.6rem;
+    }
+    .total-box strong { color: var(--primary-dark); }
+    .total-box span { font-weight: 700; }
+    .note-small { font-size: 0.78rem; opacity: 0.75; margin-top: 0.2rem; }
+    .booking-side {
+      font-size: 0.9rem;
+      background: #f9fbe7; border-radius: var(--radius); padding: 1.1rem 1rem;
+      border: 1px dashed #cddc39;
+    }
+    .booking-side h3 { font-size: 1rem; margin-bottom: 0.4rem; color: var(--primary-dark); }
+    .booking-side ul { padding-left: 1.1rem; margin-top: 0.4rem; }
+    .booking-side li { margin-bottom: 0.25rem; }
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem;
+    }
+    .contact-item {
+      background: #fff; border-radius: var(--radius); padding: 1rem 1rem 1.1rem;
+      box-shadow: var(--shadow); border: 1px solid #e0e0e0; font-size: 0.9rem;
+    }
+    .contact-item h3 { font-size: 1rem; margin-bottom: 0.4rem; color: var(--primary-dark); }
+    footer {
+      border-top: 1px solid #dce7dd; padding: 1.2rem 1.5rem 1.5rem; font-size: 0.8rem; text-align: center; color: #777;
+      background: #f1f8e9;
+    }
+    .success-message {
+      display: none;
+      margin-top: 0.8rem;
+      padding: 0.7rem 0.8rem;
+      border-radius: 8px;
+      background: #e8f5e9;
+      border: 1px solid #c8e6c9;
+      font-size: 0.85rem;
+      color: #1b5e20;
+    }
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; padding-top: 1.5rem; }
+      .hero-img { order: -1; }
+      .booking-layout { grid-template-columns: 1fr; }
+      .nav { flex-wrap: wrap; gap: 0.8rem; }
+      .nav-links { font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="logo">Green<span>Roots</span> Tissue Culture</div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#booking">Book Plants</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="btn-primary" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">
+        Book Now
+      </button>
+    </div>
+
+    <div class="hero">
+      <div class="hero-text">
+        <div class="pill">
+          <span class="pill-dot"></span>
+          Premium Banana Tissue Culture Plants
+        </div>
+        <h1>
+          Disease‑free <span>banana plants</span> directly from our tissue culture lab.
+        </h1>
+        <p>
+          Your father’s expertise, now online. Order high‑quality, uniform banana tissue culture plants at a fixed rate of ₹16 per plant.
+        </p>
+        <div class="hero-badges">
+          <div class="badge"><span class="badge-dot"></span> Consistent yield & growth</div>
+          <div class="badge"><span class="badge-dot"></span> Lab‑hardened & nursery ready</div>
+          <div class="badge"><span class="badge-dot"></span> Direct from grower, no middlemen</div>
+        </div>
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">
+            Book Your Plants
+          </button>
+          <button class="btn-outline" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})">
+            View Gallery
+          </button>
+          <span class="hero-note">Starting from minimum order of 100 plants.</span>
+        </div>
+      </div>
+      <div class="hero-img">
+        <div class="hero-img-main"></div>
+        <div class="hero-img-card">
+          <strong>Trusted by farmers & nurseries</strong>
+          <span>Healthy, uniform banana plants produced under controlled tissue culture conditions and hardened in our nursery.</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- About -->
+    <section id="about">
+      <div class="section-header">
+        <h2>About our tissue culture plant</h2>
+        <p>
+          We specialize in high‑quality banana tissue culture plants. Every plantlet is produced in a clean lab, hardened in our nursery, and supplied ready for field planting.
+        </p>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <div class="card-tag">Why tissue culture?</div>
+          <h3>Uniform, vigorous growth</h3>
+          <p>
+            Tissue culture plants are genetically uniform, disease‑free, and give better yield compared to conventional suckers.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-tag">Our process</div>
+          <h3>From lab to your field</h3>
+          <p>
+            Plantlets are multiplied in vitro, then hardened in controlled shade‑net conditions before dispatch, ensuring strong survival in your farm.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-tag">Your advantage</div>
+          <h3>Direct from producer</h3>
+          <p>
+            Order directly from our facility—transparent pricing, consistent quality, and personal support from an experienced grower.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery">
+      <div class="section-header">
+        <h2>Gallery</h2>
+        <p>Take a look at our lab, nursery, and banana plants at different stages of growth.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/2736499/pexels-photo-2736499.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Banana plants in nursery" />
+          <div class="gallery-caption">Hardened banana plants ready for dispatch</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/2886937/pexels-photo-2886937.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Tissue culture lab" />
+          <div class="gallery-caption">Controlled tissue culture environment</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/212324/pexels-photo-212324.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Banana field" />
+          <div class="gallery-caption">Uniform growth in the field</div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/175773/pexels-photo-175773.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Packing plants" />
+          <div class="gallery-caption">Careful packing for safe transport</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing">
+      <div class="section-header">
+        <h2>Pricing</h2>
+        <p>Simple, transparent pricing so farmers and nurseries can plan confidently.</p>
+      </div>
+      <div class="cards">
+        <div class="card">
+          <h3>Standard rate</h3>
+          <p class="price-highlight">
+            Fixed price: <strong>₹16 per plant</strong>
+          </p>
+          <p style="margin-top:0.5rem;">
+            Same rate for all orders above the minimum quantity. No hidden charges from our side.
+          </p>
+          <p class="note-small">
+            Transport charges, if any, can be discussed at the time of confirmation.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Minimum order</h3>
+          <p>
+            We recommend a minimum order of <strong>100 plants</strong> to make transport and handling economical.
+          </p>
+          <p class="note-small">
+            For bulk orders (5,000+ plants), you can mention it in the booking form for special coordination.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Payment & dispatch</h3>
+          <p>
+            Once we confirm availability and schedule, payment and dispatch details will be shared directly over phone or WhatsApp.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking -->
+    <section id="booking">
+      <div class="section-header">
+        <h2>Book your banana plants</h2>
+        <p>Fill in your details and the number of plants you need. You’ll see the total amount instantly.</p>
+      </div>
+
+      <div class="booking-layout">
+        <form id="bookingForm">
+          <div class="form-row">
+            <div>
+              <label for="name">Full name *</label>
+              <input type="text" id="name" name="name" required placeholder="Enter your full name" />
+            </div>
+            <div>
+              <label for="phone">Mobile number *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="Enter your mobile number" />
+            </div>
+          </div>
+
+          <div class="form-row" style="margin-top:0.9rem;">
+            <div>
+              <label for="email">Email (optional)</label>
+              <input type="email" id="email" name="email" placeholder="Enter your email" />
+            </div>
+            <div>
+              <label for="plants">Number of plants *</label>
+              <input type="number" id="plants" name="plants" min="100" step="10" required placeholder="e.g. 500" />
+              <div class="muted">Minimum 100 plants. Enter in multiples that suit your field size.</div>
+            </div>
+          </div>
+
+          <div style="margin-top:0.9rem;">
+            <label for="delivery">Delivery / pickup preference *</label>
+            <select id="delivery" name="delivery" required>
+              <option value="">Select an option</option>
+              <option value="pickup">Pickup from nursery</option>
+              <option value="transport">Transport to my location (to be discussed)</option>
+            </select>
+          </div>
+
+          <div style="margin-top:0.9rem;">
+            <label for="address">Farm / delivery address *</label>
+            <textarea id="address" name="address" required placeholder="Village / town, district, state, pin code"></textarea>
+          </div>
+
+          <div style="margin-top:0.9rem;">
+            <label for="notes">Additional notes (optional)</label>
+            <textarea id="notes" name="notes" placeholder="Preferred variety, tentative date, any special instructions"></textarea>
+          </div>
+
+          <div class="total-box" id="totalBox">
+            <strong>Estimated total:</strong>
+            <span id="totalAmount">₹0</span>
+            <div class="note-small">
+              Calculated at ₹16 per plant. Final amount and transport (if any) will be confirmed over phone/WhatsApp.
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary" style="margin-top:1rem; width:100%;">
+            Submit booking request
+          </button>
+
+          <div class="success-message" id="successMessage">
+            Thank you! Your booking request has been received. We will contact you shortly to confirm availability, schedule, and transport/payment details.
+          </div>
+        </form>
+
+        <div class="booking-side">
+          <h3>What happens after you book?</h3>
+          <ul>
+            <li><strong>1.</strong> We receive your booking details.</li>
+            <li><strong>2.</strong> We call or WhatsApp you to confirm quantity, variety, and dispatch date.</li>
+            <li><strong>3.</strong> Payment and transport are finalized.</li>
+            <li><strong>4.</strong> Plants are packed and dispatched or kept ready for pickup.</li>
+          </ul>
+          <p style="margin-top:0.7rem;">
+            You can also directly call us after submitting the form if your requirement is urgent or for very large orders.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="section-header">
+        <h2>Contact & location</h2>
+        <p>Reach out for bookings, availability, or any questions about banana tissue culture plants.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <h3>Call / WhatsApp</h3>
+          <p><strong>Mobile:</strong> +91-XXXXXXXXXX</p>
+          <p class="note-small">Replace with your father’s actual number.</p>
+        </div>
+        <div class="contact-item">
+          <h3>Nursery address</h3>
+          <p>
+            [Nursery name]<br />
+            [Village / Town]<br />
+            [District, State, PIN]<br />
+            India
+          </p>
+        </div>
+        <div class="contact-item">
+          <h3>Timings</h3>
+          <p>
+            <strong>Monday – Saturday:</strong> 9:00 AM – 6:00 PM<br />
+            <strong>Sunday:</strong> By prior appointment
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> GreenRoots Tissue Culture. All rights reserved. Website created for Rahul’s father’s banana tissue culture plant.
+  </footer>
+
+  <script>
+    const RATE_PER_PLANT = 16;
+    const plantsInput = document.getElementById('plants');
+    const totalAmountSpan = document.getElementById('totalAmount');
+    const bookingForm = document.getElementById('bookingForm');
+    const successMessage = document.getElementById('successMessage');
+    const yearSpan = document.getElementById('year');
+
+    yearSpan.textContent = new Date().getFullYear();
+
+    function updateTotal() {
+      const qty = parseInt(plantsInput.value, 10) || 0;
+      const total = qty * RATE_PER_PLANT;
+      totalAmountSpan.textContent = '₹' + total.toLocaleString('en-IN');
+    }
+
+    plantsInput.addEventListener('input', updateTotal);
+
+    bookingForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Here you can later integrate with:
+      // - Email service (Formspree, EmailJS, backend API)
+      // - WhatsApp API
+      // For now, we just show a confirmation message.
+
+      successMessage.style.display = 'block';
+      successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Optionally clear form after a short delay
+      setTimeout(() => {
+        bookingForm.reset();
+        updateTotal();
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
